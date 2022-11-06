@@ -13,6 +13,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [myTeamActive, setMyTeamActive] = useState<boolean>(false);
+
+  // Getting the tags from the data
   const allTags: string[] = [];
   localData.forEach((character) => {
     if (character.tags) {
@@ -24,6 +26,7 @@ function App() {
     }
   });
 
+  // Handling Selection of a character
   const handleSelection = (id: number) => {
     const character = data.find((character) => character.id === id);
     if (character) {
@@ -35,6 +38,7 @@ function App() {
     }
   };
 
+  // Handling the search based on the tags
   const handleTagSelection = (tag: string) => {
     setSearch("");
     if (selectedTags.includes(tag)) {
@@ -46,6 +50,7 @@ function App() {
     }
   };
 
+  // Handling myTeam selection
   const handleMyTeam = () => {
     setSelectedTags([]);
     setSearch("");
@@ -55,6 +60,7 @@ function App() {
     }
   };
 
+  // Effects
   useEffect(() => {
     if (!myTeamActive) {
       if (selectedTags.length === 0) {
